@@ -1,0 +1,29 @@
+{
+  "alice": {
+    "salt": "FzfSrvhHNKf8cx/iBEtacg==",
+    "verifier": "F3g8fFJM08Qou8OaXCXmLIbUN/7DaP/XaOY+3Mon+Tg=",
+    "iter": 200000,
+    "tier": "normal",
+    "perm": "rw",
+    "fail_count": 0,
+    "banned_until": 0.0
+  },
+  "bob": {
+    "salt": "+fCqXBuPW04gllfjHfQ7ow==",
+    "verifier": "TPwetEifqXAIR3QjjGo/nETgUIdyBhBX1g7/HyMrBuA=",
+    "iter": 200000,
+    "tier": "vip",
+    "perm": "rw",
+    "fail_count": 0,
+    "banned_until": 0.0
+  },
+  "guest": {
+    "salt": "NY6xribphv417HYhTcAMOQ==",
+    "verifier": "Tgt96TZQ2TkzO5fWLPWdMOl9LWEvVHB78Yyx208Ywok=",
+    "iter": 200000,
+    "tier": "normal",
+    "perm": "r",
+    "fail_count": 0,
+    "banned_until": 0.0
+  }
+}
