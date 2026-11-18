@@ -1,0 +1,24 @@
+{
+  "listen_host": "0.0.0.0",
+  "ctrl_port": 19443,
+  "data_port": 19444,
+  "root_dir": "server_data",
+  "users_file": "config/users.json",
+  "tls": {
+    "ca_cert": "certs/ca-cert.pem",
+    "server_cert": "certs/server-cert.pem",
+    "server_key": "certs/server-key.pem",
+    "require_client_cert": true,
+    "min_tls_version": "TLSv1.2"
+  },
+  "max_file_size": 2147483648,
+  "max_total_conns": 64,
+  "max_conns_per_ip": 8,
+  "idle_timeout": 75,
+  "login": { "max_fail": 5, "ban_seconds": 600 },
+  "ctrl_rate": { "req_per_sec": 20, "burst": 30 },
+  "bandwidth": { "normal": 1048576, "vip": 8388608 },
+  "chunk_size": 1048576,
+  "transfer_pending_timeout": 60,
+  "log_file": "logs/server.log"
+}

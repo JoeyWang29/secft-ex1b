@@ -1,0 +1,19 @@
+# 运行时产物
+server_data/
+logs/
+*.log
+*.secft_part
+
+# 证书与私钥（可用 scripts/gen_certs.py 重新生成，生产环境严禁入库）
+certs/*.pem
+certs/*.key
+certs/*.csr
+certs/*.srl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 打包产物
+dist/
