@@ -337,8 +337,13 @@ class FTServer:
 
     # ------------------------------------------------------------ 目录操作
     def _user_root(self, sess) -> str:
-        """每个用户隔离在自己的目录下（多用户隔离 + ACL 越狱防线）。"""
-        return safe_resolve(self.cfg.root_dir, sess.username)
+        """每个用户隔离在自己的目录下（多用户隔离 + ACL 越狱防线）。
+
+        首次访问时自动创建用户目录，保证全新部署开箱即用。
+        """
+        root = safe_resolve(self.cfg.root_dir, sess.username)
+        os.makedirs(root, exist_ok=True)
+        return root
 
     def _require_write(self, sess) -> None:
         if sess.info.get("perm") != "rw":

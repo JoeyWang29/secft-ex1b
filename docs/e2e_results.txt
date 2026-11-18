@@ -1,163 +1,162 @@
 ﻿================================================================
 SecFT 端到端自动化测试
 ================================================================
-2026-11-18 11:22:34 [MainThread] INFO TLS 上下文就绪: min=771 双向认证=True
-2026-11-18 11:22:34 [Thread-1 (serve)] INFO 控制通道监听 0.0.0.0:19443
-2026-11-18 11:22:34 [Thread-1 (serve)] INFO 数据通道监听 0.0.0.0:19444
-2026-11-18 11:22:34 [Thread-1 (serve)] INFO SecFT 服务器已启动  根目录=D:\29166\Documents\Trae-CN\temp_20261117_03\secft\server_data 用户数=3
+2026-11-18 11:28:11 [MainThread] INFO TLS 上下文就绪: min=771 双向认证=True
+2026-11-18 11:28:11 [Thread-1 (serve)] INFO 控制通道监听 0.0.0.0:19443
+2026-11-18 11:28:11 [Thread-1 (serve)] INFO 数据通道监听 0.0.0.0:19444
+2026-11-18 11:28:11 [Thread-1 (serve)] INFO SecFT 服务器已启动  根目录=D:\29166\Documents\Trae-CN\temp_20261117_03\secft\server_data 用户数=3
 
 == 1. 握手与认证 ==
-2026-11-18 11:22:36 [Thread-2 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:38165 证书CN=alice
+2026-11-18 11:28:12 [Thread-2 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:34622 证书CN=alice
   [PASS] WELCOME 握手
   [PASS] TLS 加密套件协商
-2026-11-18 11:22:36 [Thread-3 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:38166 证书CN=alice
-2026-11-18 11:22:36 [Thread-3 (_wrap_conn)] WARNING 口令校验失败 127.0.0.1 alice
+2026-11-18 11:28:12 [Thread-3 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:34623 证书CN=alice
+2026-11-18 11:28:12 [Thread-3 (_wrap_conn)] WARNING 口令校验失败 127.0.0.1 alice
   [PASS] 错误口令被拒绝
-2026-11-18 11:22:36 [Thread-3 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:38166: 对端已关闭连接
-2026-11-18 11:22:36 [Thread-2 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
+2026-11-18 11:28:12 [Thread-3 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:34623: 对端已关闭连接
+2026-11-18 11:28:13 [Thread-2 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
   [PASS] 正确口令登录成功
   [PASS] 会话令牌已下发
-2026-11-18 11:22:36 [Thread-4 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:38168 证书CN=alice
+2026-11-18 11:28:13 [Thread-4 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:34624 证书CN=alice
   [PASS] 未认证请求被拒绝
 
 == 2. 目录操作 ==
-2026-11-18 11:22:36 [Thread-4 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:38168: 对端已关闭连接
-2026-11-18 11:22:36 [Thread-2 (_wrap_conn)] INFO MKDIR alice -> docs
+2026-11-18 11:28:13 [Thread-4 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:34624: 对端已关闭连接
+2026-11-18 11:28:13 [Thread-2 (_wrap_conn)] INFO MKDIR alice -> docs
   [PASS] 创建目录
   [PASS] 重复创建返回 EXISTS
   [PASS] 目录列表包含新建目录
 
 == 3. 传输完整性与分片校验 ==
-2026-11-18 11:22:36 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice small.bin size=123456 续传偏移=0
-2026-11-18 11:22:36 [Thread-5 (_wrap_conn)] INFO UPLOAD_DONE alice small.bin sha256=c88542f66d4b6c29
+2026-11-18 11:28:13 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice small.bin size=123456 续传偏移=0
+2026-11-18 11:28:13 [Thread-5 (_wrap_conn)] INFO UPLOAD_DONE alice small.bin sha256=c88542f66d4b6c29
   [PASS] 小文件上传完成 (UPLOAD_DONE)
   [PASS] 服务器端哈希一致
-2026-11-18 11:22:36 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice big.bin size=5243657 续传偏移=0
-2026-11-18 11:22:39 [Thread-6 (_wrap_conn)] INFO UPLOAD_DONE alice big.bin sha256=f71b1aab54dc3eb9
+2026-11-18 11:28:13 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice big.bin size=5243657 续传偏移=0
+2026-11-18 11:28:16 [Thread-6 (_wrap_conn)] INFO UPLOAD_DONE alice big.bin sha256=f71b1aab54dc3eb9
   [PASS] 5MiB 大文件分片上传
   [PASS] 大文件服务器端哈希一致
-2026-11-18 11:22:39 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice big.bin size=5243657 起始偏移=0
-2026-11-18 11:22:44 [Thread-7 (_wrap_conn)] INFO DOWNLOAD_DONE alice big.bin 字节=5243657
+2026-11-18 11:28:16 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice big.bin size=5243657 起始偏移=0
+2026-11-18 11:28:21 [Thread-7 (_wrap_conn)] INFO DOWNLOAD_DONE alice big.bin 字节=5243657
   [PASS] 下载字节级一致
 
 == 4. 断点续传 ==
-2026-11-18 11:22:44 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=0
+2026-11-18 11:28:21 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=0
   [PASS] 模拟中断：上传中途断开
   [PASS] 服务器保留半成品 .part
-2026-11-18 11:22:45 [Thread-8 (_wrap_conn)] INFO 数据通道异常 127.0.0.1:4724: 对端已关闭连接
-2026-11-18 11:22:45 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=1048576
+2026-11-18 11:28:22 [Thread-8 (_wrap_conn)] INFO 数据通道异常 127.0.0.1:51126: 对端已关闭连接
+2026-11-18 11:28:22 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=1048576
   [PASS] 续传偏移=1MiB
-2026-11-18 11:22:45 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=1048576
-2026-11-18 11:22:47 [Thread-9 (_wrap_conn)] INFO UPLOAD_DONE alice resume.bin sha256=5eb3e7602500769a
+2026-11-18 11:28:22 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice resume.bin size=3145728 续传偏移=1048576
+2026-11-18 11:28:24 [Thread-9 (_wrap_conn)] INFO UPLOAD_DONE alice resume.bin sha256=5eb3e7602500769a
   [PASS] 断点续传后上传完成
   [PASS] 续传结果哈希一致
-2026-11-18 11:22:47 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice resume.bin size=3145728 起始偏移=1048576
-2026-11-18 11:22:49 [Thread-10 (_wrap_conn)] INFO DOWNLOAD_DONE alice resume.bin 字节=2097152
+2026-11-18 11:28:24 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice resume.bin size=3145728 起始偏移=1048576
+2026-11-18 11:28:26 [Thread-10 (_wrap_conn)] INFO DOWNLOAD_DONE alice resume.bin 字节=2097152
   [PASS] 下载断点续传字节一致
 
 == 5. ACL / 路径穿越 ==
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: ../../etc/passwd
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: ../../etc/passwd
   [PASS] 穿越拦截 ../../etc/passwd
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: ../bob/big.bin
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: ../bob/big.bin
   [PASS] 穿越拦截 ../bob/big.bin
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: a/b/../../../x
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: a/b/../../../x
   [PASS] 穿越拦截 a/b/../../../x
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: ../../windows
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: ../../windows
   [PASS] 穿越拦截 ..\..\windows
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: ../evil.bin
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: ../evil.bin
   [PASS] 上传文件名越界拦截
-2026-11-18 11:22:49 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:38165: 路径越界: ..
+2026-11-18 11:28:26 [Thread-2 (_wrap_conn)] WARNING 路径越界拦截 127.0.0.1:34622: 路径越界: ..
   [PASS] 删除 .. 拦截
 
 == 6. 多用户隔离与只读权限 ==
-2026-11-18 11:22:49 [Thread-11 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:4732 证书CN=alice
-2026-11-18 11:22:49 [Thread-11 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
+2026-11-18 11:28:26 [Thread-11 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56611 证书CN=alice
+2026-11-18 11:28:26 [Thread-11 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
   [PASS] 用户目录互相隔离 (alice 根目录无他人目录)
-2026-11-18 11:22:49 [Thread-11 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:4732: 对端已关闭连接
-2026-11-18 11:22:49 [Thread-12 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:4733 证书CN=guest
-2026-11-18 11:22:49 [Thread-12 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> guest [normal]
+2026-11-18 11:28:26 [Thread-11 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:56611: 对端已关闭连接
+2026-11-18 11:28:26 [Thread-12 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56612 证书CN=guest
+2026-11-18 11:28:26 [Thread-12 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> guest [normal]
   [PASS] guest 只读用户可登录
-2026-11-18 11:22:49 [Thread-12 (_wrap_conn)] WARNING 权限拒绝 127.0.0.1:4733: 只读用户禁止写操作
+2026-11-18 11:28:26 [Thread-12 (_wrap_conn)] WARNING 权限拒绝 127.0.0.1:56612: 只读用户禁止写操作
   [PASS] 只读用户写操作被拒
-2026-11-18 11:22:49 [Thread-12 (_wrap_conn)] INFO DOWNLOAD_INIT guest pub.txt size=19 起始偏移=0
+2026-11-18 11:28:26 [Thread-12 (_wrap_conn)] INFO DOWNLOAD_INIT guest pub.txt size=19 起始偏移=0
   [PASS] 只读用户可下载
 
 == 7. 重放防御 ==
-2026-11-18 11:22:49 [Thread-12 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:4733: 对端已关闭连接
-2026-11-18 11:22:49 [Thread-13 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:4734 证书CN=alice
-2026-11-18 11:22:49 [Thread-13 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
+2026-11-18 11:28:26 [Thread-12 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:56612: 对端已关闭连接
+2026-11-18 11:28:26 [Thread-13 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56614 证书CN=alice
+2026-11-18 11:28:26 [Thread-13 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
   [PASS] 正常请求得到 PONG
   [PASS] 同序号帧重放被拒绝
 
 == 8. 请求限流 ==
-2026-11-18 11:22:49 [Thread-14 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:4735 证书CN=alice
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续1次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续2次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续3次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续4次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续5次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续6次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续7次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续8次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续9次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续10次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:4735 连续11次
-2026-11-18 11:22:50 [Thread-14 (_wrap_conn)] WARNING 持续超频，强制断开 127.0.0.1:4735
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56615 证书CN=alice
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续1次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续2次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续3次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续4次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续5次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续6次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续7次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续8次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续9次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续10次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 限流触发 127.0.0.1:56615 连续11次
+2026-11-18 11:28:26 [Thread-14 (_wrap_conn)] WARNING 持续超频，强制断开 127.0.0.1:56615
   [PASS] 突发 80 请求触发限流
 
 == 9. 连接数上限 ==
-2026-11-18 11:22:50 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:4744 [ctrl]
-2026-11-18 11:22:50 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:4745 [ctrl]
-2026-11-18 11:22:50 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:4746 [ctrl]
+2026-11-18 11:28:26 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:56623 [ctrl]
+2026-11-18 11:28:26 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:56624 [ctrl]
+2026-11-18 11:28:26 [accept-ctrl] WARNING 拒绝连接（并发上限）127.0.0.1:56625 [ctrl]
   [PASS] 超出单 IP 连接上限被拒绝
-2026-11-18 11:22:50 [Thread-15 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4736 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-21 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4743 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-18 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4739 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-20 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4742 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-16 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4737 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-15 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56616 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-18 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56619 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-17 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56618 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-19 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56620 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-16 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56617 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-21 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56622 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
+2026-11-18 11:28:26 [Thread-20 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:56621 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
 
 == 10. 多任务并发 ==
-2026-11-18 11:22:50 [Thread-19 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4740 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-17 (_wrap_conn)] INFO TLS 握手失败 127.0.0.1:4738 [ctrl] [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1018)
-2026-11-18 11:22:50 [Thread-22 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:4747 证书CN=alice
-2026-11-18 11:22:50 [Thread-22 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
-2026-11-18 11:22:50 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_0.bin size=2097152 续传偏移=0
-2026-11-18 11:22:50 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_1.bin size=2098151 续传偏移=0
-2026-11-18 11:22:50 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_2.bin size=2099150 续传偏移=0
-2026-11-18 11:22:51 [Thread-24 (_wrap_conn)] INFO UPLOAD_DONE alice conc_1.bin sha256=d03afdcad40e1c9a
-2026-11-18 11:22:53 [Thread-23 (_wrap_conn)] INFO UPLOAD_DONE alice conc_0.bin sha256=a61f2f1f61e0038d
-2026-11-18 11:22:55 [Thread-25 (_wrap_conn)] INFO UPLOAD_DONE alice conc_2.bin sha256=48557be7ea652d07
+2026-11-18 11:28:26 [Thread-22 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56626 证书CN=alice
+2026-11-18 11:28:27 [Thread-22 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> alice [normal]
+2026-11-18 11:28:27 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_0.bin size=2097152 续传偏移=0
+2026-11-18 11:28:27 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_1.bin size=2098151 续传偏移=0
+2026-11-18 11:28:27 [Thread-22 (_wrap_conn)] INFO UPLOAD_INIT alice conc_2.bin size=2099150 续传偏移=0
+2026-11-18 11:28:29 [Thread-23 (_wrap_conn)] INFO UPLOAD_DONE alice conc_0.bin sha256=a61f2f1f61e0038d
+2026-11-18 11:28:30 [Thread-24 (_wrap_conn)] INFO UPLOAD_DONE alice conc_1.bin sha256=d03afdcad40e1c9a
+2026-11-18 11:28:32 [Thread-25 (_wrap_conn)] INFO UPLOAD_DONE alice conc_2.bin sha256=48557be7ea652d07
   [PASS] 3 个任务并发上传完成
   [PASS] 并发上传哈希全部一致
-2026-11-18 11:22:55 [Thread-22 (_wrap_conn)] INFO DOWNLOAD_INIT alice conc_0.bin size=2097152 起始偏移=0
-2026-11-18 11:22:55 [Thread-22 (_wrap_conn)] INFO DOWNLOAD_INIT alice conc_1.bin size=2098151 起始偏移=0
-2026-11-18 11:22:58 [Thread-26 (_wrap_conn)] INFO DOWNLOAD_DONE alice conc_0.bin 字节=2097152
-2026-11-18 11:22:59 [Thread-27 (_wrap_conn)] INFO DOWNLOAD_DONE alice conc_1.bin 字节=2098151
+2026-11-18 11:28:32 [Thread-22 (_wrap_conn)] INFO DOWNLOAD_INIT alice conc_0.bin size=2097152 起始偏移=0
+2026-11-18 11:28:32 [Thread-22 (_wrap_conn)] INFO DOWNLOAD_INIT alice conc_1.bin size=2098151 起始偏移=0
+2026-11-18 11:28:34 [Thread-26 (_wrap_conn)] INFO DOWNLOAD_DONE alice conc_0.bin 字节=2097152
+2026-11-18 11:28:36 [Thread-27 (_wrap_conn)] INFO DOWNLOAD_DONE alice conc_1.bin 字节=2098151
   [PASS] 并发下载完成
 
 == 11. 分级限速 (normal 1MiB/s vs vip 8MiB/s) ==
-2026-11-18 11:22:59 [Thread-28 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:3781 证书CN=bob
-2026-11-18 11:22:59 [Thread-28 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> bob [vip]
-2026-11-18 11:22:59 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice perf.bin size=4194304 续传偏移=0
-2026-11-18 11:23:03 [Thread-29 (_wrap_conn)] INFO UPLOAD_DONE alice perf.bin sha256=c3bac85bb2e5e994
-2026-11-18 11:23:03 [Thread-28 (_wrap_conn)] INFO UPLOAD_INIT bob perf.bin size=4194304 续传偏移=0
-2026-11-18 11:23:03 [Thread-30 (_wrap_conn)] INFO UPLOAD_DONE bob perf.bin sha256=c3bac85bb2e5e994
-2026-11-18 11:23:03 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice perf.bin size=4194304 起始偏移=0
-2026-11-18 11:23:07 [Thread-31 (_wrap_conn)] INFO DOWNLOAD_DONE alice perf.bin 字节=4194304
-2026-11-18 11:23:07 [Thread-28 (_wrap_conn)] INFO DOWNLOAD_INIT bob perf.bin size=4194304 起始偏移=0
-2026-11-18 11:23:07 [Thread-32 (_wrap_conn)] INFO DOWNLOAD_DONE bob perf.bin 字节=4194304
-  [PASS] VIP 明显快于普通用户 (alice 4.0s vs bob 0.1s)
+2026-11-18 11:28:36 [Thread-28 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:56645 证书CN=bob
+2026-11-18 11:28:36 [Thread-28 (_wrap_conn)] INFO 登录成功 127.0.0.1 -> bob [vip]
+2026-11-18 11:28:36 [Thread-2 (_wrap_conn)] INFO UPLOAD_INIT alice perf.bin size=4194304 续传偏移=0
+2026-11-18 11:28:40 [Thread-29 (_wrap_conn)] INFO UPLOAD_DONE alice perf.bin sha256=c3bac85bb2e5e994
+2026-11-18 11:28:40 [Thread-28 (_wrap_conn)] INFO UPLOAD_INIT bob perf.bin size=4194304 续传偏移=0
+2026-11-18 11:28:40 [Thread-30 (_wrap_conn)] INFO UPLOAD_DONE bob perf.bin sha256=c3bac85bb2e5e994
+2026-11-18 11:28:40 [Thread-2 (_wrap_conn)] INFO DOWNLOAD_INIT alice perf.bin size=4194304 起始偏移=0
+2026-11-18 11:28:44 [Thread-31 (_wrap_conn)] INFO DOWNLOAD_DONE alice perf.bin 字节=4194304
+2026-11-18 11:28:44 [Thread-28 (_wrap_conn)] INFO DOWNLOAD_INIT bob perf.bin size=4194304 起始偏移=0
+2026-11-18 11:28:44 [Thread-32 (_wrap_conn)] INFO DOWNLOAD_DONE bob perf.bin 字节=4194304
+  [PASS] VIP 明显快于普通用户 (alice 3.9s vs bob 0.7s)
 
 == 12. 登出 ==
-2026-11-18 11:23:07 [Thread-28 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:3781: 对端已关闭连接
-2026-11-18 11:23:07 [Thread-2 (_wrap_conn)] INFO 客户端主动登出 127.0.0.1:38165
+2026-11-18 11:28:44 [Thread-28 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:56645: 对端已关闭连接
+2026-11-18 11:28:44 [Thread-2 (_wrap_conn)] INFO 客户端主动登出 127.0.0.1:34622
   [PASS] LOGOUT 返回 BYE
-2026-11-18 11:23:07 [Thread-33 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:3798 证书CN=alice
+2026-11-18 11:28:44 [Thread-33 (_wrap_conn)] INFO 控制连接建立 127.0.0.1:14181 证书CN=alice
   [PASS] 登出后令牌失效
-2026-11-18 11:23:07 [Thread-33 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:3798: 对端已关闭连接
 
 ================================================================
 结果: 40/40 通过
 ================================================================
-2026-11-18 11:23:07 [Thread-22 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:4747: 对端已关闭连接
+2026-11-18 11:28:44 [Thread-22 (_wrap_conn)] INFO 控制连接断开 127.0.0.1:56626: 对端已关闭连接
