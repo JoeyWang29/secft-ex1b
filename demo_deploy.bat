@@ -1,11 +1,11 @@
 @echo off
 title SecFT-Deploy
 cd /d D:\29166\Documents\Trae-CN\temp_20261117_03\secft
-echo [1/2] 生成 PKI 证书链（根CA / 服务器 / 各用户客户端证书）...
+echo [1/2] Generate PKI certificate chain (root CA / server / client certs) ...
 python scripts\gen_certs.py
 echo.
-echo [2/2] 生成演示用户（PBKDF2 校验值存储，不保存明文口令）...
+echo [2/2] Generate demo users (PBKDF2 verifiers, no plaintext passwords) ...
 python scripts\gen_users.py
 echo.
-echo 部署完成，可以启动服务器了。
+echo Deployment done. You can start the server now.
 pause
