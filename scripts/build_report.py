@@ -20,9 +20,26 @@ ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)),
 FIGS = os.path.join(ROOT, "docs", "figures")
 OUT = os.path.join(ROOT, "docs", "实验报告_SecFT安全文件传输软件.docx")
 
-STUDENT_NAME = "张三"                 # TODO: 替换为真实姓名
-STUDENT_ID = "202618008829001"        # TODO: 替换为真实学号
-GIT_URL = "【提交前填写你的 GitHub/Gitee 仓库地址】"
+STUDENT_NAME = "王恩泽"               # 中国科学院大学 计算机科学与技术学院
+STUDENT_ID = "202628007329016"
+
+
+def _git_url() -> str:
+    """从本地仓库 remote 自动推导 Git 链接；未配置 remote 时给出占位提示。"""
+    import subprocess
+    try:
+        url = subprocess.run(["git", "remote", "get-url", "origin"], cwd=ROOT,
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+        if url:
+            if url.endswith(".git"):
+                url = url[:-4]
+            return url
+    except Exception:
+        pass
+    return "【待填写：GitHub/Gitee 仓库地址】"
+
+
+GIT_URL = _git_url()
 
 PRIMARY = RGBColor(0x1A, 0x36, 0x5D)
 ACCENT = RGBColor(0x2B, 0x6C, 0xB0)
